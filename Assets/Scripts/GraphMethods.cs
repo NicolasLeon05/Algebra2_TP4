@@ -9,10 +9,16 @@ public class GraphMethods
     /// <typeparam name="TSource"></typeparam>
     /// <param name="source"></param>
     /// <param name="predicate"></param>
+    /// Time: O(n)
+    /// Memory: O(1)
     /// <returns></returns>
     public static bool All<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
     {
-        throw new NotImplementedException();
+        foreach (var item in source)
+            if (!predicate(item))
+                return false;
+
+        return true;
     }
     /// <summary>
     /// Determines whether any element of a sequence satisfies a condition.
@@ -20,10 +26,16 @@ public class GraphMethods
     /// <typeparam name="TSource"></typeparam>
     /// <param name="source"></param>
     /// <param name="predicate"></param>
+    /// Time: O(n)
+    /// Memory: O(1)
     /// <returns></returns>
     public static bool Any<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate) 
     {
-        throw new NotImplementedException();
+        foreach (var item in source)
+            if (predicate(item))
+                return true;
+
+        return false;
     }
     /// <summary>
     /// Determines whether a sequence contains a specified element by using the default equality comparer.
@@ -31,10 +43,18 @@ public class GraphMethods
     /// <typeparam name="TSource"></typeparam>
     /// <param name="source"></param>
     /// <param name="item"></param>
+    /// Time: O(n)
+    /// Memory: O(1)
     /// <returns></returns>
     public static bool Contains<TSource>(IEnumerable<TSource> source, TSource item)
     {
-        throw new NotImplementedException();
+        var comparer = EqualityComparer<TSource>.Default;
+
+        foreach (var element in source)
+            if (comparer.Equals(element, item))
+                return true;
+
+        return false;
     }
     /// <summary>
     /// Determines whether a sequence contains a specified element by using a specified IEqualityComparer<T>.
@@ -43,10 +63,16 @@ public class GraphMethods
     /// <param name="source"></param>
     /// <param name="item"></param>
     /// <param name="comparer"></param>
+    /// Time: O(n)
+    /// Memory: O(1)
     /// <returns></returns>
     public static bool Contains<TSource>(IEnumerable<TSource> source, TSource item, IEqualityComparer<TSource> comparer)
     {
-        throw new NotImplementedException();
+        foreach (var element in source)
+            if (comparer.Equals(element, item))
+                return true;
+
+        return false;
     }
     /// <summary>
     /// Returns distinct elements from a sequence by using the default equality comparer to compare values.
