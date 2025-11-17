@@ -162,11 +162,14 @@ public class GraphMethods
     public static IEnumerable<TSource> Except<TSource>(IEnumerable<TSource> source1, IEnumerable<TSource> source2)
     {
         var excluded = new HashSet<TSource>(source2);
+        var yielded = new HashSet<TSource>();
         var result = new List<TSource>();
 
         foreach (var item in source1)
-            if (!excluded.Contains(item))
+        {
+            if (!excluded.Contains(item) && yielded.Add(item))
                 result.Add(item);
+        }
 
         return result;
     }
